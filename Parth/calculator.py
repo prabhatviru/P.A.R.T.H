@@ -67,57 +67,68 @@ class Calcutation:
         finally:speak('Factorial calculation is completed.')
 
     def convert_length():
-    try:
-        conversions = {
-            1: ("feet to meters", lambda x: x / 3.281),
-            2: ("meters to feet", lambda x: x * 3.281),
-            3: ("inches to centimeters", lambda x: x * 2.54),
-            4: ("centimeters to inches", lambda x: x / 2.54),
-            5: ("kilometers to miles", lambda x: x * 0.621371),
-            6: ("miles to kilometers", lambda x: x / 0.621371),
-            7: ("yards to meters", lambda x: x * 0.9144),
-            8: ("meters to yards", lambda x: x / 0.9144),
-            9: ("nautical miles to kilometers", lambda x: x * 1.852),
-            10: ("kilometers to nautical miles", lambda x: x / 1.852),
-            11: ("millimeters to inches", lambda x: x / 25.4),
-            12: ("inches to millimeters", lambda x: x * 25.4),
-            13: ("centimeters to feet", lambda x: x / 30.48),
-            14: ("feet to centimeters", lambda x: x * 30.48),
-            15: ("meters to miles", lambda x: x / 1609.34),
-            16: ("miles to meters", lambda x: x * 1609.34),
-            17: ("kilometers to yards", lambda x: x * 1093.61),
-            18: ("yards to kilometers", lambda x: x / 1093.61),
-            19: ("nanometers to meters", lambda x: x / 1e9),
-            20: ("meters to nanometers", lambda x: x * 1e9),
-            21: ("micrometers to meters", lambda x: x / 1e6),
-            22: ("meters to micrometers", lambda x: x * 1e6),
-            23: ("light-years to kilometers", lambda x: x * 9.461e12),
-            24: ("kilometers to light-years", lambda x: x / 9.461e12),
-            25: ("astronomical units to kilometers", lambda x: x * 1.496e8),
-            26: ("kilometers to astronomical units", lambda x: x / 1.496e8),
-        }
-        
-        # Display the conversion options with index numbers
-        print('Choose a conversion type by entering the index number:')
-        for index, (description, _) in conversions.items():
-            print(f"{index}: {description}")
+        try:
+            speak('Do you want to convert feet to meters or meters to feet? (feet to meters/meters to feet)')
+            choice = takeCommand().lower()
+            if 'feet to meters' in choice:
+                feet = float(input("Enter the length in feet: "))
+                meters = feet / 3.281
+                speak(f'{feet} feet is equal to {meters:.2f} meters.')
 
-        # Take user's choice
-        choice = int(input("Enter the index number of the conversion type: "))
-        
-        if choice in conversions:
-            conversion_type, formula = conversions[choice]
-            value = float(input(f"Enter the value to convert ({conversion_type}): "))
-            result = formula(value)
-            unit_from, unit_to = conversion_type.split(" to ")
-            print(f'{value} {unit_from} is equal to {result:.2f} {unit_to}.')
-        else:
-            print("Invalid choice. Please enter a valid index number.")
-    except ValueError:
-        print("Invalid input. Please enter a numeric value.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        
+            elif 'meters to feet' in choice:
+                meters = float(input("Enter the length in meters: "))
+                feet = meters * 3.281
+                speak(f'{meters} meters is equal to {feet:.2f} feet.')
+
+            elif 'inches to centimeters' in choice:
+                inches = float(input("Enter the length in inches: "))
+                centimeters = inches * 2.54
+                speak(f'{inches} inches is equal to {centimeters:.2f} centimeters.')
+
+            elif 'centimeters to inches' in choice:
+                centimeters = float(input("Enter the length in centimeters: "))
+                inches = centimeters / 2.54
+                speak(f'{centimeters} centimeters is equal to {inches:.2f} inches.')
+
+            elif 'kilometers to miles' in choice:
+                kilometers = float(input("Enter the length in kilometers: "))
+                miles = kilometers * 0.621371
+                speak(f'{kilometers} kilometers is equal to {miles:.2f} miles.')
+
+            elif 'miles to kilometers' in choice:
+                miles = float(input("Enter the length in miles: "))
+                kilometers = miles / 0.621371
+                speak(f'{miles} miles is equal to {kilometers:.2f} kilometers.')
+
+            elif 'yards to meters' in choice:
+                yards = float(input("Enter the length in yards: "))
+                meters = yards * 0.9144
+                speak(f'{yards} yards is equal to {meters:.2f} meters.')
+
+            elif 'meters to yards' in choice:
+                meters = float(input("Enter the length in meters: "))
+                yards = meters / 0.9144
+                speak(f'{meters} meters is equal to {yards:.2f} yards.')
+
+            elif 'nautical miles to kilometers' in choice:
+                nautical_miles = float(input("Enter the length in nautical miles: "))
+                kilometers = nautical_miles * 1.852
+                speak(f'{nautical_miles} nautical miles is equal to {kilometers:.2f} kilometers.')
+
+            elif 'kilometers to nautical miles' in choice:
+                kilometers = float(input("Enter the length in kilometers: "))
+                nautical_miles = kilometers / 1.852
+                speak(f'{kilometers} kilometers is equal to {nautical_miles:.2f} nautical miles.')
+
+
+            else:speak('Invalid choice. Please be more specific.')
+
+        except ValueError:speak('Invalid input. Please enter a number.')
+
+        except Exception as e:speak(f'An error occurred: {e}')
+
+        finally:speak('Conversion complete.')
+
     # creatimg a function for age calculation -|>
     def age_calculator():
         today = datetime.date.today()
